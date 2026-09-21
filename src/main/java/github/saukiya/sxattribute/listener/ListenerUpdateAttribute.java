@@ -18,6 +18,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -71,7 +72,8 @@ public class ListenerUpdateAttribute implements Listener {
         if (SXAttribute.isRpgInventory()) {
             updateEquipmentData(player);
         } else {
-            if (inv.getHolder().equals(player) || inv.getHolder().equals(RepairCommand.holder) || inv.getHolder().equals(SellCommand.holder)) {
+            InventoryHolder holder = inv.getHolder();
+            if (player.equals(holder) || RepairCommand.holder.equals(holder) || SellCommand.holder.equals(holder)) {
                 updateEquipmentData(player);
             }
         }
